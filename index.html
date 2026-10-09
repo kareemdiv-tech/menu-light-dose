@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1F0D01">
+<title>منيو الكافيه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <img class="logo" src="logo.png" alt="" width="170" height="219" onerror="this.hidden=true;document.body.classList.add('no-logo')">
+  <h1 id="cafeName"></h1>
+  <p id="cafeNameEn" class="en" hidden></p>
+  <p id="tagline"></p>
+  <a id="waBtn" class="wa" hidden target="_blank" rel="noopener">اطلب عبر واتساب</a>
+</header>
+
+<div class="tools">
+  <div class="tools-inner">
+    <input id="search" class="search" type="search" placeholder="ابحث في المنيو" aria-label="ابحث في المنيو">
+    <nav id="cats" class="cats" aria-label="الأقسام"></nav>
+  </div>
+</div>
+
+<p id="notice" class="notice" hidden>تعذّر تحديث المنيو الآن، يتم عرض آخر نسخة محفوظة.</p>
+
+<main id="menu" aria-live="polite"></main>
+
+<footer id="foot" hidden>
+  <p id="address"></p>
+  <p id="handle" hidden></p>
+  <nav id="social" aria-label="حسابات التواصل"></nav>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
