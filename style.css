@@ -1,0 +1,296 @@
+:root {
+  --bg: #1F0D01;        /* بني داكن خلفية المنيو المطبوع */
+  --panel: #2C1804;     /* لوح القسم */
+  --gold: #E2AE4A;      /* الأسعار والعناوين */
+  --gold-dim: #B69668;  /* الحدود والنصوص الفرعية */
+  --cream: #EBDDC5;     /* أسماء الأصناف */
+  --maroon: #6A201D;    /* شريط الأسعار الأحمر في المنيو */
+  --display: "Reem Kufi", "Segoe UI", Tahoma, sans-serif;
+  --body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+/* إطار الخط المتقطع حوالين الصفحة زي المنيو المطبوع */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 8px;
+  border: 1.5px dashed rgba(226, 174, 74, .55);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 10;
+}
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------- الهيدر واللوجو ---------- */
+header {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 44px 20px 22px;
+  text-align: center;
+}
+.logo {
+  display: block;
+  width: clamp(120px, 34vw, 170px);
+  height: auto;
+  margin: 0 auto;
+}
+header h1, header p.en {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.no-logo header h1, .no-logo header p.en {
+  position: static; width: auto; height: auto; clip-path: none; white-space: normal;
+}
+.no-logo header h1 {
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 11vw, 4.4rem);
+  line-height: 1.1;
+  color: var(--gold);
+}
+.no-logo header p.en { letter-spacing: .25em; color: var(--gold-dim); direction: ltr; }
+header p#tagline {
+  margin: 16px auto 0;
+  max-width: 36ch;
+  color: var(--gold-dim);
+}
+.wa {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 26px;
+  background: var(--gold);
+  color: var(--panel);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.wa:hover { background: #F0C46B; }
+
+/* ---------- البحث والأقسام ---------- */
+.tools {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(182, 150, 104, .45);
+}
+.tools-inner { max-width: 1000px; margin: 0 auto; padding: 14px 20px 10px; }
+.search {
+  width: 100%;
+  padding: 10px 18px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  background: var(--panel);
+  font: inherit;
+  color: var(--cream);
+}
+.search::placeholder { color: var(--gold-dim); opacity: .85; }
+.cats {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 0 2px;
+  scrollbar-width: none;
+}
+.cats::-webkit-scrollbar { display: none; }
+.cats a {
+  flex: none;
+  padding: 4px 18px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.cats a:hover, .cats a.on { background: var(--gold); border-color: var(--gold); color: var(--panel); font-weight: 600; }
+
+.notice { max-width: 1000px; margin: 12px auto 0; padding: 8px 20px; color: var(--gold-dim); font-size: 14px; }
+
+/* ---------- الأقسام (لوح بإطار مزدوج زي المنيو المطبوع) ---------- */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 8px 20px 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+@media (min-width: 860px) {
+  main { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+section {
+  margin-top: 0;
+  padding: 22px 22px 12px;
+  background: var(--panel);
+  border: 1.5px solid var(--gold-dim);
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 5px var(--panel), inset 0 0 0 6.5px rgba(182, 150, 104, .5);
+  scroll-margin-top: 150px;
+}
+section h2 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.85rem;
+  line-height: 1.3;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+section h2::before, section h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+section h2::before { background: linear-gradient(to right, rgba(182, 150, 104, 0), rgba(182, 150, 104, .8)); }
+section h2::after { background: linear-gradient(to left, rgba(182, 150, 104, 0), rgba(182, 150, 104, .8)); }
+
+.item { padding: 8px 0; }
+.row { display: flex; align-items: baseline; gap: 10px; }
+.name { font-weight: 500; color: var(--cream); }
+.leader { flex: 1; border-bottom: 2px dotted rgba(182, 150, 104, .55); transform: translateY(-4px); min-width: 16px; }
+.price { font-weight: 600; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.price small { font-weight: 400; color: var(--gold-dim); font-size: 13px; }
+.desc { color: var(--gold-dim); font-size: 15px; margin-top: 0; }
+
+/* الصنف الخالص: مشطوب + علامة "خلص" حمرا */
+.item.out .name, .item.out .price { opacity: .5; text-decoration: line-through; }
+.item.out .desc { opacity: .5; }
+.tag {
+  font-size: 12px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--maroon);
+  border: 1px solid #A8423D;
+  color: var(--cream);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.empty { grid-column: 1 / -1; padding: 48px 0; text-align: center; color: var(--gold-dim); }
+
+/* ---------- الفوتر (شريط ذهبي زي أسفل المنيو المطبوع) ---------- */
+footer {
+  margin-top: 8px;
+  padding: 26px 20px 34px;
+  text-align: center;
+  color: var(--panel);
+  background: linear-gradient(#C9AA78, #A78452);
+}
+footer a { color: var(--panel); font-weight: 600; }
+#address { font-weight: 500; }
+#handle { margin-top: 6px; direction: ltr; font-family: var(--display); font-weight: 700; letter-spacing: .08em; font-size: 1.15rem; }
+#social { display: flex; justify-content: center; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
+
+.addr-icon { margin-inline-end: 8px; }
+
+/* عنوان المحل ورابط الخريطة */
+#address {
+  font-weight: 500;
+  line-height: 2;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  color: var(--panel);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.map-link:hover {
+  color: #fff;
+}
+
+.addr-icon {
+  font-size: 1.15rem;
+  color: #6A201D;
+}
+
+.map-hint {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* حسابات التواصل */
+#social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+#social .social-icon {
+  width: 48px;
+  height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(31, 13, 1, 0.4);
+  border-radius: 50%;
+
+  background: var(--panel);
+  color: var(--gold);
+
+  font-size: 1.35rem;
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+#social .social-icon:hover {
+  transform: translateY(-4px);
+  background: var(--gold);
+  color: var(--panel);
+}
+
+#social .social-icon:focus-visible {
+  outline: 3px solid var(--cream);
+  outline-offset: 3px;
+}
+
+/* شاشات الموبايل */
+@media (max-width: 480px) {
+  #social {
+    gap: 12px;
+  }
+
+  #social .social-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+
+  .map-hint {
+    display: block;
+    width: 100%;
+  }
+}
