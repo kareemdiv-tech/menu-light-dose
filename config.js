@@ -4,16 +4,16 @@ const CONFIG = {
   cafeNameEn: "LIGHT DOSE", // الاسم بالإنجليزي تحت الاسم العربي (فاضي = يختفي)
   tagline: "قهوة مختصة ومعجنات طازجة كل يوم",
   currency: "ر.س",
-  whatsapp: "", // مثال: 9665XXXXXXXX  (اتركه فارغًا لإخفاء الزرار)
+  whatsapp: "966501330075", // مثال: 9665XXXXXXXX  (اتركه فارغًا لإخفاء الزرار)
   hideUnavailable: false, // true = الصنف اللي available = FALSE يختفي من المنيو | false = يظهر مشطوب "خلص"
 
   /* الفوتر (كل حقل فاضي بيختفي) */
   address: "الرياض - حي الشفا - شارع ابي تمام",
-  mapUrl: "https://maps.app.goo.gl/AtNxV9LyDpFRSXVg7", // رابط الموقع على خرائط جوجل (لو اتحط، العنوان بيبقى لينك)
+  mapUrl: "https://maps.app.goo.gl/AtNxV9LyDpFRSXVg7" ,  // رابط الموقع على خرائط جوجل (لو اتحط، العنوان بيبقى لينك)
   handle: "LIGHT . 1DOSE", // اسم الحساب زي ما هو مكتوب على المنيو المطبوع
   instagram: "", // رابط الحساب كامل، مثال: https://instagram.com/اسم_الحساب
-  tiktok: "",
-  snapchat: "",
+  tiktok: "https://www.tiktok.com/@light.1dose.cafe?_r=1&_t=ZS-9APugVQCd6O",
+  snapchat: "https://www.snapchat.com/add/light.1dose",
 
   /* رابط تطبيق الويب (Apps Script) - لو اتحط بيتقرا الأول */
   sheetApiUrl:
