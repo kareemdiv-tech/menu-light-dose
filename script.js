@@ -285,35 +285,102 @@ if (CONFIG.whatsapp) {
   wa.hidden = false;
 }
 
+
 function fillFooter() {
   let any = false;
+
+  // العنوان مع أيقونة Google Maps
   if (CONFIG.address) {
     const p = document.getElementById("address");
+    p.replaceChildren();
+
     if (CONFIG.mapUrl) {
-      const a = el("a", "", CONFIG.address);
-      a.href = CONFIG.mapUrl; a.target = "_blank"; a.rel = "noopener";
+      const a = el("a", "map-link");
+
+      a.href = CONFIG.mapUrl;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.setAttribute("aria-label", "افتح موقع جرعة خفيفة على خرائط جوجل");
+
+      const mapIcon = el("i", "fa-solid fa-location-dot addr-icon");
+      mapIcon.setAttribute("aria-hidden", "true");
+
+      a.append(mapIcon, document.createTextNode(CONFIG.address));
+
+      const hint = el("span", "map-hint", " — افتح الموقع على الخريطة");
+      a.appendChild(hint);
+
       p.appendChild(a);
-    } else p.textContent = CONFIG.address;
+    } else {
+      p.textContent = CONFIG.address;
+    }
+
     any = true;
   }
+
+  // اسم المحل أو الحساب
   if (CONFIG.handle) {
     const h = document.getElementById("handle");
     h.textContent = CONFIG.handle;
     h.hidden = false;
     any = true;
   }
+
+  // أيقونات التواصل الاجتماعي
   const social = document.getElementById("social");
-  [["instagram", "انستغرام"], ["tiktok", "تيك توك " ] , ["snapchat", "سناب شات"]].forEach(([key, label]) => {
-    if (!CONFIG[key]) return;
-    const a = el("a", "", label);
-    a.href = CONFIG[key]; a.target = "_blank"; a.rel = "noopener";
+  social.replaceChildren();
+
+  const accounts = [
+    {
+      key: "instagram",
+      label: "Instagram",
+      icon: "fa-brands fa-instagram",
+      url: CONFIG.instagram
+    },
+    {
+      key: "tiktok",
+      label: "TikTok",
+      icon: "fa-brands fa-tiktok",
+      url: CONFIG.tiktok
+    },
+    {
+      key: "snapchat",
+      label: "Snapchat",
+      icon: "fa-brands fa-snapchat",
+      url: CONFIG.snapchat
+    },
+    {
+      key: "whatsapp",
+      label: "WhatsApp",
+      icon: "fa-brands fa-whatsapp",
+      url: CONFIG.whatsapp
+        ? "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g, "")
+        : ""
+    }
+  ];
+
+  accounts.forEach(({ label, icon, url }) => {
+    if (!url) return;
+
+    const a = el("a", "social-icon");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.setAttribute("aria-label", label);
+    a.title = label;
+
+    const i = el("i", icon);
+    i.setAttribute("aria-hidden", "true");
+
+    a.appendChild(i);
     social.appendChild(a);
     any = true;
   });
+
   document.getElementById("foot").hidden = !any;
 }
-fillFooter();
 
+fillFooter();
 let lastSig = "";
 function refresh(silent) {
   usedFallback = false;
