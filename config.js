@@ -4,7 +4,7 @@ const CONFIG = {
   cafeNameEn: "LIGHT DOSE", // الاسم بالإنجليزي تحت الاسم العربي (فاضي = يختفي)
   tagline: "قهوة مختصة ومعجنات طازجة كل يوم",
   currency: "ر.س",
- 
+   whatsapp: "966501330075", // مثال: 9665XXXXXXXX  (اتركه فارغًا لإخفاء الزرار)
   hideUnavailable: false, // true = الصنف اللي available = FALSE يختفي من المنيو | false = يظهر مشطوب "خلص"
 
   /* الفوتر (كل حقل فاضي بيختفي) */
